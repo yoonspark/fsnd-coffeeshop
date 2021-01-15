@@ -243,8 +243,8 @@ python-versions = "*"
 version = "1.11.1"
 
 [metadata]
-content-hash = "8ab1fd315016c633cacb321d4de592926853b3a1dbd569de8bbfc0ce05fb3a08"
-python-versions = "^3.8"
+content-hash = "0217683bebf938fc12e5409974138044088e511e9bb0452f1f811007d71ab7ad"
+python-versions = "^3.7"
 
 [metadata.files]
 astroid = [
