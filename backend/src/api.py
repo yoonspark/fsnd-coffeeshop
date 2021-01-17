@@ -43,12 +43,12 @@ def retrieve_drinks_detail():
 @requires_auth('post:drinks')
 def add_drink():
     body = request.get_json()
-    if body:
-        d = Drink()
-        d.title = body.get('title', ''),
-        d.recipe = json.dumps(body.get('recipe', {}))
-    else:
+    if not body:
         abort(400)
+
+    d = Drink()
+    d.title = body.get('title', ''),
+    d.recipe = json.dumps(body.get('recipe', {}))
 
     try:
         d.insert()
