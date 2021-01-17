@@ -73,7 +73,7 @@ def update_drink(payload, drink_id):
     if not d:
         abort(404)
 
-    d.title = body.get('title', ''),
+    d.title = body.get('title', '')
     d.recipe = json.dumps(body.get('recipe', {}))
 
     try:
