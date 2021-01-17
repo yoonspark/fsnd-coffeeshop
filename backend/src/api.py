@@ -30,7 +30,7 @@ def retrieve_drinks():
 
 @app.route('/drinks-detail')
 @requires_auth('get:drinks-detail')
-def retrieve_drinks_detail():
+def retrieve_drinks_detail(payload):
     drinks = Drink.query.all()
 
     return jsonify({
@@ -41,7 +41,7 @@ def retrieve_drinks_detail():
 
 @app.route('/drinks', methods=['POST'])
 @requires_auth('post:drinks')
-def add_drink():
+def add_drink(payload):
     body = request.get_json()
     if not body:
         abort(400)
@@ -63,7 +63,7 @@ def add_drink():
 
 @app.route('/drinks/<int:drink_id>', methods=['PATCH'])
 @requires_auth('patch:drinks')
-def update_drink(drink_id):
+def update_drink(payload, drink_id):
     body = request.get_json()
     if not body:
         abort(400)
@@ -88,7 +88,7 @@ def update_drink(drink_id):
 
 @app.route('/drinks/<int:drink_id>', methods=['DELETE'])
 @requires_auth('delete:drinks')
-def delete_drink(drink_id):
+def delete_drink(payload, drink_id):
     d = Drink.query.get(drink_id)
     if not d:
         abort(404)
