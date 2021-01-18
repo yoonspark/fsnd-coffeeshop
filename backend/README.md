@@ -64,6 +64,6 @@ For successful launch, make sure that the virtual environment has been activated
 
 You can use [Postman](https://getpostman.com) to test the API endpoints.
 The included Postman collection tests three user types:
-1. **Customer**, who can only view basic drink info
-2. **Barista**, who can also view detailed drink info
-3. **Manager**, who can perform all actions including creation and deletion of drink items
+1. *Customer*, who can only view basic drink info
+2. *Barista*, who can also view detailed drink info
+3. *Manager*, who can perform all actions including creation and deletion of drink items
