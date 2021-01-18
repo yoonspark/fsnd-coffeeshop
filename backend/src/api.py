@@ -13,8 +13,8 @@ setup_db(app)
 CORS(app)
 
 
-RESTART_DB = False # Should be True for the first run
-if RESTART_DB:
+NEWDB = os.environ.get('NEWDB')
+if NEWDB and NEWDB.lower() == 'true':
     db_drop_and_create_all()
 
 
