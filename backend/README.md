@@ -4,7 +4,7 @@ Coffee shop app’s backend server hosted locally at `http://127.0.0.1:5000/`.
 
 ## Getting Started
 
-### Installing Dependendies
+### Installing Dependencies
 
 The current project repo uses [`poetry`](https://python-poetry.org/docs/) to manage
 dependencies among different Python packages, which is essential to reproducibility.
