@@ -1,85 +1,69 @@
-# Coffee Shop Backend
+# Coffee Shop: Backend
+
+Coffee shop app’s backend server hosted locally at `http://127.0.0.1:5000/`.
 
 ## Getting Started
 
-### Installing Dependencies
+### Installing Dependendies
 
-#### Python 3.7
+The current project repo uses [`poetry`](https://python-poetry.org/docs/) to manage
+dependencies among different Python packages, which is essential to reproducibility.
+Following are steps for setting up and getting started:
 
-Follow instructions to install the latest version of python for your platform in the [python docs](https://docs.python.org/3/using/unix.html#getting-and-installing-the-latest-version-of-python)
-
-#### Virtual Enviornment
-
-We recommend working within a virtual environment whenever using Python for projects. This keeps your dependencies for each project separate and organaized. Instructions for setting up a virual enviornment for your platform can be found in the [python docs](https://packaging.python.org/guides/installing-using-pip-and-virtual-environments/)
-
-#### PIP Dependencies
-
-Once you have your virtual environment setup and running, install dependencies by naviging to the `/backend` directory and running:
-
-```bash
-pip install -r requirements.txt
+First, ensure you are using the right version of Python (`^3.7`). You may want to
+use [`pyenv`](https://github.com/pyenv/pyenv) to effectively manage multiple versions
+of Python installation. You can then install `poetry`:
+```
+$ pip install poetry
 ```
 
-This will install all of the required packages we selected within the `requirements.txt` file.
+Once you clone the current repo into your local machine, you can go inside the repo and run:
+```
+$ poetry install
+```
+to install the right versions of packages for running scripts in the project repo.
 
-##### Key Dependencies
+To use the new Python configuration that has been installed, you need to run:
+```
+$ poetry shell
+```
+which will activate the virtual environment for the project repo.
 
-- [Flask](http://flask.pocoo.org/)  is a lightweight backend microservices framework. Flask is required to handle requests and responses.
+You can simply type:
+```
+$ exit
+```
+to exit from the virtual environment and return to the global (or system) Python installation.
 
-- [SQLAlchemy](https://www.sqlalchemy.org/) and [Flask-SQLAlchemy](https://flask-sqlalchemy.palletsprojects.com/en/2.x/) are libraries to handle the lightweight sqlite database. Since we want you to focus on auth, we handle the heavy lift for you in `./src/database/models.py`. We recommend skimming this code first so you know how to interface with the Drink model.
+### Setting up the Database
 
-- [jose](https://python-jose.readthedocs.io/en/latest/) JavaScript Object Signing and Encryption for JWTs. Useful for encoding, decoding, and verifying JWTS.
+To create a new database, set:
+```
+$ export NEWDB=TRUE
+```
+which will make the server create a new database when it starts.
 
-## Running the server
+To make the created database persist, set:
+```
+$ export NEWDB=FALSE
+```
+which will stop the server from resetting the database when it starts.
 
-From within the `./src` directory first ensure you are working using your created virtual environment.
+### Running the Server
 
-Each time you open a new terminal session, run:
-
-```bash
-export FLASK_APP=api.py;
+Finally, you can launch the backend server (within `src/` subdirectory):
+```
+$ export FLASK_APP=flaskr
+$ export FLASK_ENV=development
+$ flask run
 ```
 
-To run the server, execute:
+For successful launch, make sure that the virtual environment has been activated.
 
-```bash
-flask run --reload
-```
+### Testing
 
-The `--reload` flag will detect file changes and restart the server automatically.
-
-## Tasks
-
-### Setup Auth0
-
-1. Create a new Auth0 Account
-2. Select a unique tenant domain
-3. Create a new, single page web application
-4. Create a new API
-    - in API Settings:
-        - Enable RBAC
-        - Enable Add Permissions in the Access Token
-5. Create new API permissions:
-    - `get:drinks-detail`
-    - `post:drinks`
-    - `patch:drinks`
-    - `delete:drinks`
-6. Create new roles for:
-    - Barista
-        - can `get:drinks-detail`
-    - Manager
-        - can perform all actions
-7. Test your endpoints with [Postman](https://getpostman.com). 
-    - Register 2 users - assign the Barista role to one and Manager role to the other.
-    - Sign into each account and make note of the JWT.
-    - Import the postman collection `./starter_code/backend/udacity-fsnd-udaspicelatte.postman_collection.json`
-    - Right-clicking the collection folder for barista and manager, navigate to the authorization tab, and including the JWT in the token field (you should have noted these JWTs).
-    - Run the collection and correct any errors.
-    - Export the collection overwriting the one we've included so that we have your proper JWTs during review!
-
-### Implement The Server
-
-There are `@TODO` comments throughout the `./backend/src`. We recommend tackling the files in order and from top to bottom:
-
-1. `./src/auth/auth.py`
-2. `./src/api.py`
+You can use [Postman](https://getpostman.com) to test the API endpoints.
+The included Postman collection tests three user types:
+1. **Customer**, who can only view basic drink info
+2. **Barista**, who can also view detailed drink info
+3. **Manager**, who can perform all actions including creation and deletion of drink items
